@@ -18,7 +18,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainForm extends JFrame {
+    int a,b;
     public MainForm() {
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close the application on JForm exit
         this.setTitle("Main Form");
         this.setSize(600, 200);
@@ -28,14 +30,14 @@ public class MainForm extends JFrame {
         JButton b1 = new JButton("Show Calender 1"); // Button 1 (Create Calender 1)
         b1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                showNewCalender();
+                 a=showNewCalender();
             }
         });
 
         JButton b2 = new JButton("Show Calender 2"); // Button 2 (Create Calender 2)
         b2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                showNewCalender();
+                 b=showNewCalender();
             }
         });
 
@@ -46,15 +48,26 @@ public class MainForm extends JFrame {
         panel.add(b2);
 
         this.add(panel);
+
+        if(a!=b)
+
+            JOptionPane.showMessageDialog(this,"hash codes does not equal ");
     }
 
+
+
+
     /**
+     *
      * Create and show new calender object
      * Todo: This method logs the object HashCode in a text file, after refactoring the code; show warning message if the HashCode of Calender1 doesn't equal Calender2 HashCode
      */
-    private void showNewCalender() {
-        SwingCalendar sc = new SwingCalendar();
+    private int  showNewCalender() {
+        SwingCalendar sc;
+       sc= SwingCalendar.getInstance();
+
         Util.Logger.log("Object HC: " + sc.hashCode()); // Log Calender hash code
+        return sc.hashCode();
     }
 
 
